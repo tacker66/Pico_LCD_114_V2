@@ -1,0 +1,7 @@
+{
+  "name": "Pico_LCD_114_V2",
+  "version": "1.0.0",
+  "urls": [
+    ["Pico_LCD_114_V2.py", "github:tacker66/Pico_LCD_114_V2/Pico_LCD_114_V2.py"],
+  ]
+}

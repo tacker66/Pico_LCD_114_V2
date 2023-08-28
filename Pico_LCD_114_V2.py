@@ -8,6 +8,7 @@
 #    horizontal borders can be colored individually
 #  - backlight intensity can be changed
 #  - additional color definitions
+#  - installable with mip.install("github:tacker66/Pico_LCD_114_V2")
 #
 
 from machine import Pin, SPI, PWM
