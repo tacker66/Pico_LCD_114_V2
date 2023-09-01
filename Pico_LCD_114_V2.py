@@ -183,17 +183,21 @@ class LCD_114(framebuf.FrameBuffer):
         self.cs(1)
         self.dc(1)
         self.cs(0)
-        ptr = 0
-        self.border_buffer[0] = self.v_border_color % 256
-        self.border_buffer[1] = self.v_border_color // 256
-        for line in range(0, self.height):
-            self.spi.write(self.buffer[ptr:ptr+2*self.width])
-            ptr = ptr + 2*self.width
-            for i in range(0, (LCD_114.WIDTH-self.width)*2, 2):
-                self.spi.write(self.border_buffer)
-        self.border_buffer[0] = self.h_border_color % 256
-        self.border_buffer[1] = self.h_border_color // 256
-        for line in range(0, LCD_114.HEIGHT-self.height):
-            for i in range(0, LCD_114.WIDTH*2, 2):
-                self.spi.write(self.border_buffer)
+        if self.width < LCD_114.WIDTH:
+            self.border_buffer[0] = self.v_border_color % 256
+            self.border_buffer[1] = self.v_border_color // 256
+            ptr = 0
+            for line in range(0, self.height):
+                self.spi.write(self.buffer[ptr:ptr+2*self.width])
+                ptr = ptr + 2*self.width
+                for i in range(0, (LCD_114.WIDTH-self.width)*2, 2):
+                    self.spi.write(self.border_buffer)
+        else:
+            self.spi.write(self.buffer)
+        if self.height < LCD_114.HEIGHT:
+            self.border_buffer[0] = self.h_border_color % 256
+            self.border_buffer[1] = self.h_border_color // 256
+            for line in range(0, LCD_114.HEIGHT-self.height):
+                for i in range(0, LCD_114.WIDTH*2, 2):
+                    self.spi.write(self.border_buffer)
         self.cs(1)
