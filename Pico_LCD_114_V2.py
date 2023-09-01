@@ -21,6 +21,9 @@ class LCD_114(framebuf.FrameBuffer):
     WIDTH  = 240
     HEIGHT = 135
     # Keys
+    #      2         A
+    #    4 3 6
+    #      5         B
     KEY_A = 15
     KEY_B = 17
     KEY_2 = 2
@@ -45,7 +48,9 @@ class LCD_114(framebuf.FrameBuffer):
     BLUE   = 0x1f00
     YELLOW = 0x0cff
     
-    def set_backlight(self, rate):
+    def set_backlight(self, rate=None):
+        if rate == None:
+            return int(100 * self.pwm.duty_u16() / 65535.0 + 0.5)
         rate = int(rate)
         if rate < 0:
             rate = 0
