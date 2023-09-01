@@ -37,6 +37,13 @@ class LCD_114(framebuf.FrameBuffer):
     MOSI= 11
     # PWM line
     BL  = 13
+    # RGB565 colors (see https://rgbcolorpicker.com/565; LSB first!)
+    WHITE  = 0xffff
+    BLACK  = 0x0000
+    RED    = 0x00f8
+    GREEN  = 0xe007
+    BLUE   = 0x1f00
+    YELLOW = 0x0cff
     
     def set_backlight(self, rate):
         rate = int(rate)
@@ -80,13 +87,6 @@ class LCD_114(framebuf.FrameBuffer):
         self.border_buffer = bytearray(2)
         self.v_border_color = int(v_border_color)
         self.h_border_color = int(h_border_color)
-        # RGB565 colors (see https://rgbcolorpicker.com/565; LSB first!)
-        self.white  = 0xffff
-        self.black  = 0x0000
-        self.red    = 0x00f8
-        self.green  = 0xe007
-        self.blue   = 0x1f00
-        self.yellow = 0x0cff
         self.init_display()
 
     def write_cmd(self, cmd):
