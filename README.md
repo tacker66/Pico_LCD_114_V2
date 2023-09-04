@@ -9,5 +9,6 @@ An enhanced driver for the [WaveShare Pico LCD 1.14](https://www.waveshare.com/w
 * demo code moved out of the driver file
 * extended demos
   * graphicdemo.py: original demo code with additional demo of borders and backlight intensity
-  * logdemo.py: textual log screen demo  
+  * logdemo.py: textual log screen demo
+  * fractaldemo.py: compute the mandelbrot set 
 * installable with mip.install("github:tacker66/Pico_LCD_114_V2")
